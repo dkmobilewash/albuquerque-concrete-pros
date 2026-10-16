@@ -21,12 +21,8 @@ export const siteConfig = {
   description:
     "Albuquerque Concrete Pros builds driveways, stamped concrete, slabs, foundations, retaining walls and commercial concrete engineered for high-desert soils and climate across the Albuquerque metro.",
 
-  /**
-   * Main phone number, display format, e.g. "(505) 555-0100".
-   * EMPTY until the client supplies the real number. When empty, the site
-   * shows no phone anywhere and routes every CTA to the contact form.
-   */
-  phone: "" as string,
+  /** Main phone number (display format). Rendered as a click-to-call link via `telHref()`. */
+  phone: "(505) 628-0897" as string,
 
   /**
    * Public-facing email address shown on the site. EMPTY until supplied.
@@ -34,12 +30,13 @@ export const siteConfig = {
    */
   email: "" as string,
 
-  /**
-   * Street address for NAP + LocalBusiness schema. null until the client
-   * confirms a real address (or confirms they are a service-area business
-   * with no public storefront, in which case leave null and keep areaServed).
-   */
-  address: null as null | {
+  /** Street address for NAP + LocalBusiness schema. */
+  address: {
+    streetAddress: "4000 Hendrix Rd NE",
+    addressLocality: "Albuquerque",
+    addressRegion: "NM",
+    postalCode: "87110",
+  } as null | {
     streetAddress: string;
     addressLocality: string;
     addressRegion: "NM";
@@ -47,13 +44,16 @@ export const siteConfig = {
   },
 
   /**
-   * Business hours in schema.org openingHours format, e.g. ["Mo-Fr 07:00-17:00"].
-   * EMPTY until the client confirms real hours.
+   * Business hours. `schema` uses schema.org openingHours format; `label` is
+   * what visitors see. Empty array = no hours shown or emitted.
    */
-  openingHours: [] as string[],
+  hours: [
+    { label: "Monday–Friday", time: "9:00 am – 6:00 pm", schema: "Mo-Fr 09:00-18:00" },
+    { label: "Saturday–Sunday", time: "9:00 am – 2:00 pm", schema: "Sa-Su 09:00-14:00" },
+  ] as { label: string; time: string; schema: string }[],
 
-  /** Year founded. null until supplied — never estimate "years in business". */
-  foundingYear: null as number | null,
+  /** Year founded (supplied by the client). */
+  foundingYear: 2020 as number | null,
 
   /**
    * New Mexico contractor license number (Construction Industries Division)
@@ -66,11 +66,11 @@ export const siteConfig = {
   insuranceStatement: "" as string,
 
   /**
-   * Path under /public to the real logo file, e.g. "/logo.svg". EMPTY until the
-   * client supplies one; until then the header renders a text wordmark and the
-   * schema omits `logo`.
+   * Raster logo used for JSON-LD `logo` (Google wants a crawlable bitmap, min
+   * 112x112). Rendered from components/Logo.tsx — regenerate with
+   * `npm run logo` after changing the design.
    */
-  logoPath: "" as string,
+  logoPath: "/logo.png" as string,
 } as const;
 
 /**
@@ -121,4 +121,10 @@ export const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "";
 /** Returns only the populated social/citation URLs. */
 export function populatedSameAs(): string[] {
   return Object.values(socialProfiles).filter((u) => u.trim().length > 0);
+}
+
+/** "tel:" href in E.164 form for a US display number, e.g. "(505) 628-0897" → "tel:+15056280897". */
+export function telHref(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  return `tel:+${digits.length === 10 ? `1${digits}` : digits}`;
 }

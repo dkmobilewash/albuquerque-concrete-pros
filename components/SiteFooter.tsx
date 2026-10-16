@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
+import { Logo } from "@/components/Logo";
 import { areas } from "@/data/areas";
 import { services } from "@/data/services";
 import { areaPath, servicePath } from "@/lib/routes";
-import { siteConfig, socialProfiles } from "@/lib/site-config";
+import { siteConfig, socialProfiles, telHref } from "@/lib/site-config";
 
 const SOCIAL_LABELS: Record<keyof typeof socialProfiles, string> = {
   googleBusinessProfile: "Google",
@@ -30,7 +31,9 @@ export function SiteFooter() {
     <footer className="texture-concrete text-sand">
       <Container className="grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-2xl font-semibold">{siteConfig.name}</p>
+          <Link href="/" aria-label={`${siteConfig.name} home`}>
+            <Logo tone="light" />
+          </Link>
           <p className="mt-3 text-sm leading-relaxed text-stone">
             Concrete engineered for high-desert soils and weather, serving the Albuquerque metro.
           </p>
@@ -44,7 +47,7 @@ export function SiteFooter() {
             ) : null}
             {siteConfig.phone ? (
               <p>
-                <a className={footLink} href={`tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`}>
+                <a className={footLink} href={telHref(siteConfig.phone)}>
                   {siteConfig.phone}
                 </a>
               </p>
@@ -56,7 +59,15 @@ export function SiteFooter() {
                 </a>
               </p>
             ) : null}
-            {siteConfig.openingHours.length ? <p>Hours: {siteConfig.openingHours.join(", ")}</p> : null}
+            {siteConfig.hours.length ? (
+              <p className="pt-2">
+                {siteConfig.hours.map((h) => (
+                  <span key={h.schema} className="block">
+                    {h.label}: {h.time}
+                  </span>
+                ))}
+              </p>
+            ) : null}
             <p>
               <Link className={footLink} href="/contact/">
                 Request a consultation →
@@ -73,9 +84,9 @@ export function SiteFooter() {
 
         <div className="lg:col-span-2">
           <p className={colTitle}>Services</p>
-          <ul className="grid gap-2 sm:grid-cols-2">
+          <ul className="gap-x-8 sm:columns-2">
             {services.map((s) => (
-              <li key={s.slug}>
+              <li key={s.slug} className="mb-2 break-inside-avoid">
                 <Link className={footLink} href={servicePath(s)}>
                   {s.name}
                 </Link>

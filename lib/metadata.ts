@@ -14,6 +14,14 @@ type PageMetaInput = {
   noIndex?: boolean;
 };
 
+/** Branded share card, rendered by scripts/render-logo.mjs. Swap for real project photography later if desired. */
+const OG_IMAGE = {
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: `${siteConfig.name} — concrete built for the high desert`,
+};
+
 /** Titles longer than this drop the brand suffix so the geo-modified part isn't truncated in SERPs. */
 const MAX_TITLE = 65;
 
@@ -45,12 +53,14 @@ export function pageMetadata(input: PageMetaInput): Metadata {
       siteName: siteConfig.name,
       locale: siteConfig.locale,
       type: input.type ?? "website",
+      images: [OG_IMAGE],
       ...(input.publishedTime ? { publishedTime: input.publishedTime } : {}),
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description: input.description,
+      images: [OG_IMAGE.url],
     },
     ...(input.noIndex ? { robots: { index: false, follow: true } } : {}),
   };

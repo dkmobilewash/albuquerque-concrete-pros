@@ -57,7 +57,7 @@ export function organizationNode(): JsonLdObject {
   if (siteConfig.phone) node.telephone = siteConfig.phone;
   if (siteConfig.email) node.email = siteConfig.email;
   if (siteConfig.address) node.address = { "@type": "PostalAddress", addressCountry: "US", ...siteConfig.address };
-  if (siteConfig.openingHours.length) node.openingHours = siteConfig.openingHours;
+  if (siteConfig.hours.length) node.openingHours = siteConfig.hours.map((h) => h.schema);
   if (siteConfig.foundingYear) node.foundingDate = String(siteConfig.foundingYear);
   if (siteConfig.logoPath) {
     node.logo = absoluteUrl(siteConfig.logoPath);

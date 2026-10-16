@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, telHref } from "@/lib/site-config";
 
 /** Closing call to action. Shows a phone number only once a real one is configured. */
 export function CtaBand({
@@ -26,7 +26,7 @@ export function CtaBand({
           </Link>
           {siteConfig.phone ? (
             <a
-              href={`tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`}
+              href={telHref(siteConfig.phone)}
               className="inline-flex items-center justify-center rounded-sm border border-stone/40 px-6 py-3 font-semibold text-sand hover:border-sand"
             >
               Call {siteConfig.phone}

@@ -42,7 +42,7 @@ export function ConsultationForm({ services, areas }: { services: string[]; area
     return (
       <div role="status" className="rounded-sm border border-juniper bg-white/70 p-6">
         <p className="font-display text-2xl font-semibold">Thanks — your request is in.</p>
-        <p className="mt-2 text-ink-soft">We&apos;ll follow up by email to schedule a site visit.</p>
+        <p className="mt-2 text-ink-soft">We&apos;ll follow up to schedule a site visit.</p>
       </div>
     );
   }

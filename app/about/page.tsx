@@ -40,6 +40,7 @@ export default function AboutPage() {
         title="A concrete company built around the high desert"
         lead={
           <p>
+            {siteConfig.foundingYear ? `Founded in ${siteConfig.foundingYear}, ` : ""}
             {siteConfig.name} serves homeowners, builders, HOAs and commercial property owners across the
             Albuquerque metro with concrete that&apos;s designed for the ground and climate it actually lives in.
           </p>

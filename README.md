@@ -17,31 +17,31 @@ Copy `.env.example` to `.env.local` and fill in values as they become available.
 
 ## ⚠️ Open items to confirm with the client before launch
 
-Nothing below has been invented. Each item is empty/null in code and the site renders around its absence;
+Nothing below has been invented. Each open item is empty/null in code and the site renders around its absence;
 setting the real value in the noted place activates it everywhere (visible copy **and** JSON-LD).
 
-1. **NAP — street address, phone, business hours.** `lib/site-config.ts` → `address`, `phone`, `openingHours`
-   (also `email` if a public address should be shown). Until set, no phone/address appears anywhere and every CTA
-   routes to the contact form. Confirm whether the business has a public address or is a service-area business.
-2. **Logo file.** Add to `/public` and set `siteConfig.logoPath`. Until then the header shows a text wordmark and
-   schema omits `logo`. A branded Open Graph image should be added at the same time (currently Twitter card is
-   `summary` with no image).
-3. **Review data.** `lib/site-config.ts` → `reviewData` (rating, count, source, as-of date). `null` means no stars,
-   counts, testimonials or `aggregateRating` schema anywhere. Only set from a real, current source.
-4. **Project photography.** Add real, client-owned photos to `/public/projects/…` and entries to
+**Done (client-supplied, in `lib/site-config.ts`):** NAP — 4000 Hendrix Rd NE, Albuquerque, NM 87110 · (505) 628-0897 ·
+hours Mon–Fri 9 am–6 pm, Sat–Sun 9 am–2 pm · founded 2020 · logo (see "Brand assets" below).
+
+Still open (deferred by the client):
+
+1. **Review data.** `lib/site-config.ts` → `reviewData` (rating, count, source, as-of date). `null` means no stars,
+   counts, testimonials or `aggregateRating` schema anywhere. None exist yet; only set from a real, current source.
+2. **Project photography.** Add real, client-owned photos to `/public/projects/…` and entries to
    `data/portfolio.ts` (slug-referenced). They then appear on `/portfolio/`, the home page and the matching area
    page automatically. Every image slot currently shows a labeled "Project photography pending" placeholder
    (`components/PlaceholderImage.tsx` — pass `src` to swap in a real photo). No stock photography.
-5. **License & insurance.** `siteConfig.licenseNumber` (NM Construction Industries Division license # and
+3. **License & insurance.** `siteConfig.licenseNumber` (NM Construction Industries Division license # and
    classification) and `siteConfig.insuranceStatement`. Shown in footer/About only once set. Copy deliberately never
    says "licensed and insured" until confirmed.
-6. **Founding year / years in business.** `siteConfig.foundingYear` (`null`). No tenure claims appear anywhere.
-7. **GA4 measurement ID.** Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the production environment.
-8. **Social / citation URLs.** `lib/site-config.ts` → `socialProfiles` (Google Business Profile, Facebook,
+4. **GA4 measurement ID.** Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the production environment.
+5. **Social / citation URLs.** `lib/site-config.ts` → `socialProfiles` (Google Business Profile, Facebook,
    Instagram, YouTube, Nextdoor, Yelp, Houzz, Angi, BBB). Only populated URLs are emitted in `sameAs` and the footer.
-9. **Lead destination email.** Set `LEAD_NOTIFICATION_EMAIL` + `RESEND_API_KEY`, verify the sending domain in Resend
-   and set `RESEND_FROM_EMAIL`. Until then leads are logged to the server console (see "Forms" below).
-10. **Permitting departments per jurisdiction — verify before launch.** Copy names only the governing
+   Make sure the Google Business Profile NAP matches the site exactly.
+6. **Lead destination email.** Set `LEAD_NOTIFICATION_EMAIL` + `RESEND_API_KEY`, verify the sending domain in Resend
+   and set `RESEND_FROM_EMAIL`. Until then leads are logged to the server console (see "Forms" below). A public
+   email address can also be shown via `siteConfig.email`.
+7. **Permitting departments per jurisdiction — verify before launch.** Copy names only the governing
     authority and tells readers to confirm specifics; no fees, department names or URLs were invented. Each area's
     `jurisdiction.verifyBeforeLaunch` in `data/areas.ts` holds the detailed checklist. Summary:
     - **City of Albuquerque** — which department/division handles residential flatwork & building permits; the
@@ -60,12 +60,21 @@ setting the real value in the noted place activates it everywhere (visible copy 
     - **Paradise Hills** — county vs. city per address; whether the area's special county zoning framework still
       applies.
     - **Albuquerque Acres** — current city vs. county split; per-address verification process.
-11. **Area elevations** in `data/areas.ts` are hedged estimates ("roughly…") — a quick check against USGS data is
+8. **Area elevations** in `data/areas.ts` are hedged estimates ("roughly…") — a quick check against USGS data is
     worthwhile.
-12. **Privacy policy & terms** (`app/privacy-policy`, `app/terms`) are reasonable starting drafts, not legal advice —
+9. **Privacy policy & terms** (`app/privacy-policy`, `app/terms`) are reasonable starting drafts, not legal advice —
     have them reviewed, and update if a CRM/webhook or additional processors are added.
-13. **Domain & hosting.** Point both `albuquerqueconcretepro.com` and `www.` at the host; the app 308-redirects apex →
+10. **Domain & hosting.** Point both `albuquerqueconcretepro.com` and `www.` at the host; the app 308-redirects apex →
     www. Submit `https://www.albuquerqueconcretepro.com/sitemap.xml` in Search Console.
+
+### Brand assets
+
+- `components/Logo.tsx` — the logo as code: geometric mark (Sandia crest, setting sun, slab with two control joints)
+  + Fraunces/Manrope wordmark. `tone="light"` for dark backgrounds (footer).
+- `app/icon.svg` — favicon (same paths as the mark; keep in sync).
+- `public/logo.png` (JSON-LD `logo`), `public/logo-mark.png` (square mark, 512px), `public/og-image.png`
+  (1200×630 share card used by every page's Open Graph/Twitter tags) are rendered from the live components by
+  `npm run logo` (start the app first; set `CHROMIUM_PATH` or have Google Chrome installed). Re-run after any logo change.
 
 ---
 
@@ -124,7 +133,8 @@ Each of the 104 service × area pages is composed from:
 - **JSON-LD** (`lib/schema.ts`): one `GeneralContractor` node (`@id: …/#organization`) + `WebSite` emitted once per page
   from the root layout, with `areaServed` (8 places) and `hasOfferCatalog` (all 13 services). `Service`,
   `BlogPosting` (author/publisher) and `WebSite` reference it by `@id`. `sameAs`, telephone, address, hours, logo,
-  foundingDate and `aggregateRating` are emitted **only** when real values exist in `site-config.ts`.
+  foundingDate and `aggregateRating` are emitted **only** when real values exist in `site-config.ts` (telephone,
+  address, hours, foundingDate and logo are now set; `sameAs` and `aggregateRating` remain off).
   `FAQPage` comes from `components/FaqSection.tsx`; `BreadcrumbList` from `components/Breadcrumbs.tsx`, which renders
   the visible trail and the schema from the same array.
 - **Headings:** every grid component (`components/Grids.tsx`) and `FaqSection` takes a **required** `heading` prop
