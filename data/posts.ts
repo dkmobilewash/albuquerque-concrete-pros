@@ -4,6 +4,7 @@ export const posts: Post[] = [
   // 1 ──────────────────────────────────────────────────────────────────────
   {
     slug: "concrete-driveway-cost-factors-albuquerque",
+    seoTitle: "What Drives Concrete Driveway Cost in Albuquerque?",
     title: "What Actually Drives the Cost of a Concrete Driveway in Albuquerque",
     description:
       "The real cost factors behind an Albuquerque concrete driveway: size, thickness, tear-out, caliche and collapsible soils, access, finish, drainage, and season.",
@@ -141,9 +142,10 @@ export const posts: Post[] = [
   // 2 ──────────────────────────────────────────────────────────────────────
   {
     slug: "how-long-does-concrete-take-to-cure-high-desert",
+    seoTitle: "How Long Does Concrete Cure in Albuquerque's Dry Climate?",
     title: "How Long Does Concrete Take to Cure in Albuquerque's Dry Climate?",
     description:
-      "Set, cure, and dry are different things. How Albuquerque's low humidity, wind, and sun affect curing, when you can walk or drive on it, and moisture before flooring.",
+      "Set, cure, and dry are different. How Albuquerque's low humidity, wind, and sun affect curing, when you can walk or drive on it, and moisture before flooring.",
     published: "2026-10-16",
     excerpt:
       "Concrete hardening and concrete curing are not the same thing, and our dry, windy, sunny climate makes the difference matter. Here is what to expect after a pour.",
@@ -283,9 +285,10 @@ export const posts: Post[] = [
   // 3 ──────────────────────────────────────────────────────────────────────
   {
     slug: "why-does-concrete-crack-albuquerque",
+    seoTitle: "Why Does Concrete Crack? High-Desert Causes and Fixes",
     title: "Why Does Concrete Crack? A High-Desert Guide to Causes and Fixes",
     description:
-      "Why concrete cracks in Albuquerque: shrinkage, joints, collapsible soil, expansive clay, thermal swings, and overloading, plus which cracks to repair, level, or replace.",
+      "Why concrete cracks in Albuquerque: shrinkage, joints, collapsible soil, expansive clay, heat swings, and overloading, plus which cracks to repair or replace.",
     published: "2026-10-16",
     excerpt:
       "Some cracks are cosmetic and some are a warning. Here is how to tell the difference in the high desert, and when to repair, level, or replace.",
@@ -523,6 +526,7 @@ export const posts: Post[] = [
   // 5 ──────────────────────────────────────────────────────────────────────
   {
     slug: "how-to-vet-a-concrete-contractor-new-mexico",
+    seoTitle: "How to Vet a Concrete Contractor in New Mexico",
     title: "How to Vet a Concrete Contractor in New Mexico Before You Sign",
     description:
       "A fair checklist for hiring a concrete contractor in New Mexico: license verification, insurance, permits, written scope, geotech, payment terms, and NM811.",
@@ -648,9 +652,10 @@ export const posts: Post[] = [
   // 6 ──────────────────────────────────────────────────────────────────────
   {
     slug: "whats-under-your-slab",
+    seoTitle: "What's Under Your Albuquerque Slab? Caliche, Clay & More",
     title: "Caliche, Clay, and Collapsible Soil: What's Under Your Albuquerque Slab",
     description:
-      "A plain-English guide to Albuquerque soils: caliche, expansive clay, collapsible sand, valley alluvium, and foothill granite, and how each affects slabs and foundations.",
+      "A plain-English guide to Albuquerque soils: caliche, expansive clay, collapsible sand, valley alluvium, and foothill granite, and how each affects your slab.",
     published: "2026-10-16",
     excerpt:
       "The metro sits on several very different soils, and each one asks something different of a slab. Here is what is likely under yours and what good preparation looks like.",
@@ -791,6 +796,7 @@ export const posts: Post[] = [
   // 7 ──────────────────────────────────────────────────────────────────────
   {
     slug: "protecting-concrete-sun-monsoon-freeze-thaw",
+    seoTitle: "Sun, Monsoon & Freeze-Thaw: Protecting Albuquerque Concrete",
     title: "Protecting Concrete From Sun, Monsoon, and Freeze-Thaw in Albuquerque",
     description:
       "A seasonal guide to protecting concrete in Albuquerque: UV and sealers, pre-monsoon drainage checks, joint sealing, deicing salts, and when to call for help.",

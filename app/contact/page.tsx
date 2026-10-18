@@ -10,11 +10,13 @@ import { siteConfig, telHref } from "@/lib/site-config";
 export const metadata = pageMetadata({
   title: "Request a Concrete Consultation | Albuquerque, NM",
   description:
-    "Request a consultation with Albuquerque Concrete Pros for driveways, stamped concrete, slabs, foundations, retaining walls or commercial concrete in the Albuquerque metro.",
+    "Request a consultation for driveways, stamped concrete, slabs, foundations, retaining walls or commercial concrete anywhere in the Albuquerque metro.",
   path: "/contact/",
 });
 
 export default function ContactPage() {
+  const a = siteConfig.address;
+  const addressLine = a ? `${a.streetAddress}, ${a.addressLocality}, ${a.addressRegion} ${a.postalCode}` : "";
   return (
     <>
       <PageHero
@@ -61,6 +63,15 @@ export default function ContactPage() {
                   <br />
                   {siteConfig.address.addressLocality}, {siteConfig.address.addressRegion}{" "}
                   {siteConfig.address.postalCode}
+                  {siteConfig.showOfficeMap ? (
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addressLine)}`}
+                      className="text-link mt-1 block"
+                      rel="noopener"
+                    >
+                      Get directions
+                    </a>
+                  ) : null}
                 </address>
               ) : null}
               {siteConfig.hours.length ? (
@@ -72,6 +83,15 @@ export default function ContactPage() {
                     </span>
                   ))}
                 </div>
+              ) : null}
+              {siteConfig.address && siteConfig.showOfficeMap ? (
+                <iframe
+                  title={`Map of ${siteConfig.name} office`}
+                  src={`https://www.google.com/maps?q=${encodeURIComponent(addressLine)}&output=embed`}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="aspect-[4/3] w-full rounded-sm border border-stone"
+                />
               ) : null}
             </div>
             <p className="mt-6 text-sm text-ink-soft">

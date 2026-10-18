@@ -151,6 +151,7 @@ export const servicesPartA: Service[] = [
   // ---------------------------------------------------------------------------
   {
     slug: "private-road-construction",
+    titleName: "Private Road Construction",
     name: "Private Road & Estate Access Construction",
     lowerName: "private road and estate access construction",
     tagline: "Concrete access roads, long rural drives and gated entries for acreage, estates and HOA communities.",
@@ -590,7 +591,7 @@ export const servicesPartA: Service[] = [
     lowerName: "concrete repair",
     tagline: "Crack sealing, spall and scaling repair, resurfacing and section replacement, with a straight answer on repair versus replace.",
     metaDescription:
-      "Concrete repair for cracks, spalling, scaling and damaged sections: routing and sealing, partial-depth patching, resurfacing and replacement, plus honest advice.",
+      "Concrete repair for cracks, spalling, scaling and damaged sections: crack sealing, partial-depth patching, resurfacing and replacement, with honest advice.",
     category: "restoration",
     overview: [
       "Not every damaged slab needs to come out. Cracks, chipped edges, spalled spots and surface scaling can often be repaired well if the concrete underneath is sound and the slab is still supported. The key word is sound. A good repair is bonded to solid concrete over stable ground; a patch troweled over weak concrete or a moving slab will usually pop loose within a season or two. Before we recommend anything, we figure out why the damage happened and whether the slab is worth saving.",

@@ -22,8 +22,13 @@ const OG_IMAGE = {
   alt: `${siteConfig.name} — concrete built for the high desert`,
 };
 
-/** Titles longer than this drop the brand suffix so the geo-modified part isn't truncated in SERPs. */
-const MAX_TITLE = 65;
+/** Google truncates titles around 60 characters; the brand suffix is only added when it fits. */
+export const MAX_TITLE = 60;
+
+/** First candidate that fits the title budget, else the last (shortest) one. */
+export function fitTitle(candidates: string[]): string {
+  return candidates.find((c) => c.length <= MAX_TITLE) ?? candidates[candidates.length - 1];
+}
 
 export function fullTitle(title: string, noBrandSuffix = false): string {
   if (noBrandSuffix) return title;

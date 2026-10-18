@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ComboPage } from "@/components/pages/ComboPage";
 import { areas } from "@/data/areas";
 import { services } from "@/data/services";
-import { comboTitle, soilPhrase } from "@/lib/combo";
+import { comboHeading, comboTitle, soilPhrase } from "@/lib/combo";
 import { getAreaBySlug, getServiceBySlug } from "@/lib/lookup";
 import { clampDescription, pageMetadata } from "@/lib/metadata";
 import { comboPath } from "@/lib/routes";
@@ -40,5 +40,5 @@ export default async function Page({ params }: PageProps<"/[slug]/[area]">) {
   const { slug, area: areaSlug } = await params;
   const r = resolve(slug, areaSlug);
   if (!r) notFound();
-  return <ComboPage service={r.service} area={r.area} heading={comboTitle(r.service, r.area)} />;
+  return <ComboPage service={r.service} area={r.area} heading={comboHeading(r.service, r.area)} />;
 }

@@ -10,6 +10,7 @@
  *  4. No rating/review-count/years-in-business-looking claims in visible HTML
  *  5. Header/footer link uniformity: every service and area linked equally on every page
  *  6. No aggregateRating in JSON-LD unless reviewData is configured
+ *  7. Titles ≤ 60 chars and meta descriptions 70–160 chars, all unique
  */
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -76,6 +77,21 @@ for (const [path, html] of pages) {
   const isPost = path.startsWith("/blog/") && depth === 2;
   const isUtility = ["/privacy-policy/", "/terms/", "/reviews/"].includes(path);
   if (!isPost && !isUtility && !/, NM\b/.test(t)) fail(`${path}: title lacks ", NM" geo modifier: "${t}"`);
+}
+
+// 7. Title / description length and uniqueness
+const descOf = (html) =>
+  ((html.match(/<meta name="description" content="([^"]*)"/) ?? [])[1] ?? "")
+    .replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
+const decode = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;/g, "'").replace(/&quot;/g, '"');
+const descs = new Map();
+for (const [path, html] of pages) {
+  const t = decode(titleOf(html));
+  if (t.length > 60) fail(`${path}: title ${t.length} chars (> 60): "${t}"`);
+  const d = descOf(html);
+  if (d.length < 70 || d.length > 160) fail(`${path}: meta description ${d.length} chars (want 70–160)`);
+  if (descs.has(d)) fail(`Duplicate meta description on ${path} and ${descs.get(d)}`);
+  descs.set(d, path);
 }
 
 // 4. Fabricated trust signals -------------------------------------------------

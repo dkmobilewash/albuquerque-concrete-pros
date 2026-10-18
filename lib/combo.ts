@@ -1,3 +1,4 @@
+import { fitTitle } from "@/lib/metadata";
 import type { Area, Faq, Service, ServiceSlug, SoilFactor } from "@/lib/types";
 
 /*
@@ -165,9 +166,29 @@ export function buildCombo(s: Service, a: Area): ComboContent {
   return { hash, intro: [opener, second], soilPoints, climate, permitting, faqs };
 }
 
-/** Combo <title>/<h1>. The Albuquerque combo says "City of Albuquerque" so it never duplicates the service hub title. */
-export function comboTitle(service: Service, area: Area): string {
+/** On-page <h1>: always the full service name and geo label. The Albuquerque combo says "City of Albuquerque" so it never duplicates the service hub. */
+export function comboHeading(service: Service, area: Area): string {
   return area.slug === "albuquerque"
     ? `${service.name} in the City of Albuquerque, NM`
     : `${service.name} in ${area.geoLabel}`;
+}
+
+/** <title>: the heading, shortened (service name, then geo label) only when needed to fit 60 chars. */
+export function comboTitle(service: Service, area: Area): string {
+  const short = service.titleName ?? service.name;
+  if (area.slug === "albuquerque") {
+    return fitTitle([comboHeading(service, area), `${short} in the City of Albuquerque, NM`]);
+  }
+  const geo = area.titleGeo ?? area.geoLabel;
+  return fitTitle([comboHeading(service, area), `${short} in ${area.geoLabel}`, `${short} in ${geo}`]);
+}
+
+/** Service hub <title>. */
+export function serviceHubTitle(service: Service): string {
+  const short = service.titleName ?? service.name;
+  return fitTitle([
+    `${service.name} in Albuquerque, NM & the Metro`,
+    `${short} in Albuquerque, NM & the Metro`,
+    `${short} in Albuquerque, NM`,
+  ]);
 }

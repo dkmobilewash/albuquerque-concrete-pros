@@ -44,6 +44,14 @@ export const siteConfig = {
   },
 
   /**
+   * Show a map and "Get directions" link for the street address on the
+   * contact page. OFF until the client confirms the address is a place
+   * customers can visit (not a home / service-area-only business — Google
+   * Business Profile rules treat those differently).
+   */
+  showOfficeMap: false as boolean,
+
+  /**
    * Business hours. `schema` uses schema.org openingHours format; `label` is
    * what visitors see. Empty array = no hours shown or emitted.
    */

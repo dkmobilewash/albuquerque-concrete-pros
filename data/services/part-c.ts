@@ -452,6 +452,7 @@ export const servicesPartC: Service[] = [
   // ---------------------------------------------------------------------------
   {
     slug: "structural-concrete",
+    titleName: "Structural Concrete",
     name: "Structural Concrete Construction",
     lowerName: "structural concrete",
     category: "structural",

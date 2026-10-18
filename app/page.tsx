@@ -13,10 +13,10 @@ import { servicePath } from "@/lib/routes";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = pageMetadata({
-  title: "Albuquerque Concrete Pros | Concrete Contractor in Albuquerque, NM",
+  title: "Albuquerque Concrete Pros | Concrete Contractor in ABQ, NM",
   noBrandSuffix: true,
   description:
-    "Driveways, stamped concrete, slabs, foundations, retaining walls and commercial concrete built for high-desert soils across Albuquerque, Rio Rancho and Corrales.",
+    "Driveways, stamped concrete, slabs, foundations, retaining walls and commercial concrete built for high-desert soils in Albuquerque, Rio Rancho and Corrales.",
   path: "/",
 });
 
