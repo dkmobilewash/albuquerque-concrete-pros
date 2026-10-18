@@ -55,6 +55,8 @@ export type Service = {
   slug: ServiceSlug;
   /** Full display name, e.g. "Stamped Concrete". */
   name: string;
+  /** Shorter name for <title> tags when the full name would push a title past 60 chars. */
+  titleName?: string;
   /** Lowercase phrase used mid-sentence, e.g. "stamped concrete". */
   lowerName: string;
   /** One-line hook for cards. */
@@ -112,6 +114,8 @@ export type Area = {
   name: string;
   /** Geo label for titles, e.g. "Rio Rancho, NM" or "North Valley, Albuquerque, NM". */
   geoLabel: string;
+  /** Shorter geo label for <title> tags when geoLabel would push a title past 60 chars. Must end in ", NM". */
+  titleGeo?: string;
   /** Short phrase for mid-sentence use, e.g. "Rio Rancho" or "the North Valley". */
   inPhrase: string;
   metaDescription: string;
@@ -146,6 +150,8 @@ export type PostBlock =
 export type Post = {
   slug: string;
   title: string;
+  /** Shorter <title> when `title` (the on-page H1) exceeds 60 chars. */
+  seoTitle?: string;
   /** Meta description, ~150-160 chars. */
   description: string;
   /** ISO date. */

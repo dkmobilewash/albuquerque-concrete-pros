@@ -9,7 +9,7 @@ import type { Service } from "@/lib/types";
 export const metadata = pageMetadata({
   title: "Concrete Services in Albuquerque, NM",
   description:
-    "All 13 concrete services from Albuquerque Concrete Pros: driveways, stamped concrete, slabs, foundations, retaining walls, flooring, parking lots, repair and more.",
+    "All 13 concrete services from Albuquerque Concrete Pros: driveways, stamped concrete, slabs, foundations, retaining walls, flooring, repair and more.",
   path: "/services/",
 });
 

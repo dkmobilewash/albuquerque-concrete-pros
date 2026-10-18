@@ -4,6 +4,7 @@ import { AreaPage } from "@/components/pages/AreaPage";
 import { ServicePage } from "@/components/pages/ServicePage";
 import { areas } from "@/data/areas";
 import { services } from "@/data/services";
+import { serviceHubTitle } from "@/lib/combo";
 import { getAreaBySlug, getServiceBySlug } from "@/lib/lookup";
 import { pageMetadata } from "@/lib/metadata";
 import { areaPath, servicePath } from "@/lib/routes";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: PageProps<"/[slug]">): Promis
   if (service) {
     return pageMetadata({
       // Geo modifier on service hubs too (distinct from the City-of-Albuquerque combo title).
-      title: `${service.name} in Albuquerque, NM & the Metro`,
+      title: serviceHubTitle(service),
       description: service.metaDescription,
       path: servicePath(service),
     });

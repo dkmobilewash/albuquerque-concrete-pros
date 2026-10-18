@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps<"/blog/[slug]">): P
   const post = getPostBySlug(slug);
   if (!post) return {};
   return pageMetadata({
-    title: post.title,
+    title: post.seoTitle ?? post.title,
     description: post.description,
     path: postPath(post.slug),
     type: "article",

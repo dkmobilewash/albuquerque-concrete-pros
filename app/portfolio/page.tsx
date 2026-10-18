@@ -11,7 +11,7 @@ import { pageMetadata } from "@/lib/metadata";
 export const metadata = pageMetadata({
   title: "Concrete Project Portfolio | Albuquerque, NM",
   description:
-    "Completed concrete projects from Albuquerque Concrete Pros across the Albuquerque metro — real jobs, real photography, with the soil and site challenges behind each one.",
+    "Completed concrete projects across the Albuquerque metro — real jobs and real photography, with the soil and site challenges behind each one.",
   path: "/portfolio/",
 });
 

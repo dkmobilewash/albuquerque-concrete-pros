@@ -150,6 +150,7 @@ export const areas: Area[] = [
   },
   {
     slug: "north-valley",
+    titleGeo: "North Valley ABQ, NM",
     name: "North Valley",
     geoLabel: "North Valley, Albuquerque, NM",
     inPhrase: "the North Valley",
@@ -199,6 +200,7 @@ export const areas: Area[] = [
   },
   {
     slug: "tanoan",
+    titleGeo: "Tanoan ABQ, NM",
     name: "Tanoan",
     geoLabel: "Tanoan, Albuquerque, NM",
     inPhrase: "Tanoan",
@@ -297,6 +299,7 @@ export const areas: Area[] = [
   },
   {
     slug: "los-ranchos-de-albuquerque",
+    titleGeo: "Los Ranchos, NM",
     name: "Los Ranchos de Albuquerque",
     geoLabel: "Los Ranchos de Albuquerque, NM",
     inPhrase: "Los Ranchos",

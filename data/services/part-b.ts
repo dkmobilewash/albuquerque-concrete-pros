@@ -3,6 +3,7 @@ import type { Service } from "@/lib/types";
 export const servicesPartB: Service[] = [
   {
     slug: "concrete-sidewalks",
+    titleName: "Sidewalks & Walkways",
     name: "Concrete Sidewalks & Walkways",
     lowerName: "concrete sidewalks and walkways",
     tagline: "Walkways with real traction, honest slopes, and edges that stay put through monsoon season.",
@@ -426,6 +427,7 @@ export const servicesPartB: Service[] = [
   },
   {
     slug: "concrete-maintenance",
+    titleName: "Concrete Maintenance",
     name: "Concrete Maintenance Programs",
     lowerName: "concrete maintenance",
     tagline: "Scheduled inspection, sealing, and joint care that catches small problems before they become repairs.",
