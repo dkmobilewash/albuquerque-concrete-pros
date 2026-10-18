@@ -45,11 +45,9 @@ export const siteConfig = {
 
   /**
    * Show a map and "Get directions" link for the street address on the
-   * contact page. OFF until the client confirms the address is a place
-   * customers can visit (not a home / service-area-only business — Google
-   * Business Profile rules treat those differently).
+   * contact page. Client confirmed the address is a public office.
    */
-  showOfficeMap: false as boolean,
+  showOfficeMap: true as boolean,
 
   /**
    * Business hours. `schema` uses schema.org openingHours format; `label` is
@@ -97,6 +95,16 @@ export const socialProfiles = {
   angi: "",
   bbb: "",
 } satisfies Record<string, string>;
+
+/**
+ * Search-engine ownership verification codes (HTML-tag method). Only needed
+ * if the property is verified with the meta-tag method; DNS (domain property)
+ * verification needs no code here. Paste just the content="..." value.
+ */
+export const siteVerification = {
+  google: "",
+  bing: "",
+};
 
 export type ReviewData = {
   /** Average star rating from the named source, e.g. 4.8 */

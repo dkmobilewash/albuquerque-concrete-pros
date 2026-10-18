@@ -22,6 +22,7 @@ setting the real value in the noted place activates it everywhere (visible copy 
 
 **Done (client-supplied, in `lib/site-config.ts`):** NAP — 4000 Hendrix Rd NE, Albuquerque, NM 87110 · (505) 628-0897 ·
 hours Mon–Fri 9 am–6 pm, Sat–Sun 9 am–2 pm · founded 2020 · logo (see "Brand assets" below).
+The address is a public office, so the contact page shows a map and directions link (`siteConfig.showOfficeMap`).
 
 Still open (deferred by the client):
 
@@ -34,7 +35,8 @@ Still open (deferred by the client):
 3. **License & insurance.** `siteConfig.licenseNumber` (NM Construction Industries Division license # and
    classification) and `siteConfig.insuranceStatement`. Shown in footer/About only once set. Copy deliberately never
    says "licensed and insured" until confirmed.
-4. **GA4 measurement ID.** Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the production environment.
+4. **Search Console / Bing verification** — preferably a DNS (domain property) TXT record at the registrar, which needs no code. If the HTML-tag method is used instead, paste the code into `siteVerification` in `lib/site-config.ts`.
+4b. **GA4 measurement ID.** Set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the production environment.
 5. **Social / citation URLs.** `lib/site-config.ts` → `socialProfiles` (Google Business Profile, Facebook,
    Instagram, YouTube, Nextdoor, Yelp, Houzz, Angi, BBB). Only populated URLs are emitted in `sameAs` and the footer.
    Make sure the Google Business Profile NAP matches the site exactly.

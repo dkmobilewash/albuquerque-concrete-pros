@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { siteGraph } from "@/lib/schema";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, siteVerification } from "@/lib/site-config";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -25,6 +25,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
   formatDetection: { telephone: false },
+  // Emitted only when a code is set in lib/site-config.ts.
+  verification: {
+    ...(siteVerification.google ? { google: siteVerification.google } : {}),
+    ...(siteVerification.bing ? { other: { "msvalidate.01": siteVerification.bing } } : {}),
+  },
 };
 
 export const viewport: Viewport = {
